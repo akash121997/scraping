@@ -1,0 +1,19 @@
+import requests
+from bs4 import BeautifulSoup
+url = "https://idioms.thefreedictionary.com/be+had+up+(for+something)"
+r = requests.get(url)
+htmlContent= r.content
+soup=BeautifulSoup(htmlContent,'html.parser')
+#print(soup.prettify())
+title=soup.title
+print(title.string)
+paras=soup.find_all('p')
+#print(paras)
+
+results = soup.find(id='browsers')
+#print(results.prettify())
+for item in results.stripped_strings:
+    print(item)
+all_links=soup.find_all("a")
+for link in all_links:
+    print(link.get('href'))
